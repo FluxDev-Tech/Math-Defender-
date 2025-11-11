@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Powermath Defenders - Quiz App</title>
+    <title>Powermath Defenders</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -13,115 +13,152 @@
     
     <div class="container mx-auto px-4 py-8 relative z-10">
         
-        <!-- HOME SCREEN -->
+        <!-- HOME SCREEN - Login Screen -->
         <div id="homeScreen" class="max-w-md mx-auto">
-            <div class="card p-8 text-center">
-                <h1 class="title-text text-5xl md:text-6xl text-yellow-400 mb-4">
-                    POWERMATH<br>DEFENDERS
-                </h1>
-                
-                <!-- Character Heroes -->
-                <div class="my-8 flex justify-center gap-4 flex-wrap">
-                    <div class="character hero-blue">M</div>
-                    <div class="character hero-green">A</div>
-                    <div class="character hero-red">T</div>
-                    <div class="character hero-yellow">H</div>
-                </div>
-                
-                <div class="space-y-4">
-                    <button onclick="app.showTopicSelection()" class="btn-primary w-full">
-                        🎮 Start Quiz
-                    </button>
-                    <button onclick="app.showLeaderboard()" class="btn-secondary w-full">
-                        🏆 Leaderboard
-                    </button>
-                    <button onclick="app.showStats()" class="btn-tertiary w-full">
-                        📊 My Stats
-                    </button>
-                    <button onclick="app.showSettings()" class="btn-quaternary w-full">
-                        ⚙️ Settings
-                    </button>
+            <div class="phone-frame">
+                <div class="phone-content">
+                    <!-- Header with Logo -->
+                    <div class="text-center mb-8">
+                        <h1 class="game-title text-yellow-300 mb-2">POWERMATH</h1>
+                        <h2 class="game-title text-yellow-300">DEFENDERS</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                    
+                    <!-- Superhero Characters -->
+                    <div class="heroes-container mb-8">
+                        <div class="hero hero-1">
+                            <div class="hero-body bg-gradient-to-b from-blue-400 to-blue-600"></div>
+                            <div class="hero-head"></div>
+                            <div class="hero-cape bg-blue-700"></div>
+                        </div>
+                        <div class="hero hero-2">
+                            <div class="hero-body bg-gradient-to-b from-teal-400 to-teal-600"></div>
+                            <div class="hero-head"></div>
+                            <div class="hero-cape bg-teal-700"></div>
+                        </div>
+                        <div class="hero hero-3">
+                            <div class="hero-body bg-gradient-to-b from-red-400 to-red-600"></div>
+                            <div class="hero-head"></div>
+                            <div class="hero-cape bg-red-700"></div>
+                        </div>
+                        <div class="hero hero-4">
+                            <div class="hero-body bg-gradient-to-b from-yellow-400 to-yellow-600"></div>
+                            <div class="hero-head"></div>
+                            <div class="hero-cape bg-yellow-700"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Login Buttons -->
+                    <div class="space-y-4 px-6">
+                        <button onclick="app.showTopicSelection()" class="login-btn login-btn-blue">
+                            Login
+                        </button>
+                        <button onclick="app.showTopicSelection()" class="login-btn login-btn-orange">
+                            Registration
+                        </button>
+                        <button onclick="app.showTopicSelection()" class="login-btn login-btn-purple">
+                            Parent Login
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- TOPIC SELECTION SCREEN -->
-        <div id="topicSelection" class="max-w-3xl mx-auto hidden">
-            <div class="card p-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-2 text-center">Choose Your Challenge</h2>
-                <p class="text-gray-600 text-center mb-8">Select a topic to begin your math adventure!</p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <!-- Statistics Topic -->
-                    <button onclick="app.startQuiz('statistics')" class="topic-card bg-gradient-to-br from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300">
-                        <div class="text-5xl mb-3">📊</div>
-                        <h3 class="font-bold text-xl text-blue-800 mb-1">Statistics</h3>
-                        <p class="text-sm text-gray-600">Probability, Data Analysis, Distributions</p>
-                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-blue-700">
-                            <span class="px-2 py-1 bg-blue-200 rounded-full">10 Questions</span>
-                            <span class="px-2 py-1 bg-blue-200 rounded-full">Mixed Types</span>
-                        </div>
-                    </button>
+        <!-- LEVEL SELECTION SCREEN -->
+        <div id="topicSelection" class="max-w-md mx-auto hidden">
+            <div class="phone-frame">
+                <div class="phone-content">
+                    <div class="flex justify-between items-center mb-6 px-4">
+                        <button onclick="app.showHome()" class="text-white text-2xl">←</button>
+                        <h2 class="text-white text-xl font-bold">Math Version</h2>
+                        <button class="text-white text-2xl">⚙️</button>
+                    </div>
 
-                    <!-- Algebra Topic -->
-                    <button onclick="app.startQuiz('algebra')" class="topic-card bg-gradient-to-br from-green-100 to-green-200 hover:from-green-200 hover:to-green-300">
-                        <div class="text-5xl mb-3">🔢</div>
-                        <h3 class="font-bold text-xl text-green-800 mb-1">Algebra</h3>
-                        <p class="text-sm text-gray-600">Equations, Functions, Polynomials</p>
-                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-green-700">
-                            <span class="px-2 py-1 bg-green-200 rounded-full">10 Questions</span>
-                            <span class="px-2 py-1 bg-green-200 rounded-full">Mixed Types</span>
+                    <!-- Level Path -->
+                    <div class="level-path">
+                        <!-- Level 1 - Statistics -->
+                        <div class="level-node level-unlocked" onclick="app.startQuiz('statistics')">
+                            <div class="level-circle bg-gradient-to-b from-purple-300 to-purple-500">
+                                <span class="level-icon">📊</span>
+                            </div>
+                            <div class="level-label">STATISTICS</div>
                         </div>
-                    </button>
 
-                    <!-- Calculus Topic -->
-                    <button onclick="app.startQuiz('calculus')" class="topic-card bg-gradient-to-br from-red-100 to-red-200 hover:from-red-200 hover:to-red-300">
-                        <div class="text-5xl mb-3">∫</div>
-                        <h3 class="font-bold text-xl text-red-800 mb-1">Calculus</h3>
-                        <p class="text-sm text-gray-600">Derivatives, Integrals, Limits</p>
-                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-red-700">
-                            <span class="px-2 py-1 bg-red-200 rounded-full">10 Questions</span>
-                            <span class="px-2 py-1 bg-red-200 rounded-full">Mixed Types</span>
-                        </div>
-                    </button>
+                        <div class="path-line"></div>
 
-                    <!-- Geometry Topic -->
-                    <button onclick="app.startQuiz('geometry')" class="topic-card bg-gradient-to-br from-yellow-100 to-yellow-200 hover:from-yellow-200 hover:to-yellow-300">
-                        <div class="text-5xl mb-3">📐</div>
-                        <h3 class="font-bold text-xl text-yellow-800 mb-1">Geometry</h3>
-                        <p class="text-sm text-gray-600">Shapes, Angles, Trigonometry</p>
-                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-yellow-700">
-                            <span class="px-2 py-1 bg-yellow-200 rounded-full">10 Questions</span>
-                            <span class="px-2 py-1 bg-yellow-200 rounded-full">Mixed Types</span>
+                        <!-- Level 2 - Algebra -->
+                        <div class="level-node level-unlocked" onclick="app.startQuiz('algebra')">
+                            <div class="level-circle bg-gradient-to-b from-blue-300 to-blue-500">
+                                <span class="level-icon">🔢</span>
+                            </div>
+                            <div class="level-label">ALGEBRA</div>
                         </div>
-                    </button>
 
-                    <!-- Linear Algebra Topic -->
-                    <button onclick="app.startQuiz('linearAlgebra')" class="topic-card bg-gradient-to-br from-purple-100 to-purple-200 hover:from-purple-200 hover:to-purple-300">
-                        <div class="text-5xl mb-3">📈</div>
-                        <h3 class="font-bold text-xl text-purple-800 mb-1">Linear Algebra</h3>
-                        <p class="text-sm text-gray-600">Matrices, Vectors, Transformations</p>
-                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-purple-700">
-                            <span class="px-2 py-1 bg-purple-200 rounded-full">10 Questions</span>
-                            <span class="px-2 py-1 bg-purple-200 rounded-full">Mixed Types</span>
-                        </div>
-                    </button>
+                        <div class="path-line"></div>
 
-                    <!-- Discrete Math Topic -->
-                    <button onclick="app.startQuiz('discreteMath')" class="topic-card bg-gradient-to-br from-pink-100 to-pink-200 hover:from-pink-200 hover:to-pink-300">
-                        <div class="text-5xl mb-3">🎲</div>
-                        <h3 class="font-bold text-xl text-pink-800 mb-1">Discrete Math</h3>
-                        <p class="text-sm text-gray-600">Logic, Sets, Combinatorics</p>
-                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-pink-700">
-                            <span class="px-2 py-1 bg-pink-200 rounded-full">10 Questions</span>
-                            <span class="px-2 py-1 bg-pink-200 rounded-full">Mixed Types</span>
+                        <!-- Level 3 - Calculus -->
+                        <div class="level-node level-unlocked" onclick="app.startQuiz('calculus')">
+                            <div class="level-circle bg-gradient-to-b from-green-300 to-green-500">
+                                <span class="level-icon">∫</span>
+                            </div>
+                            <div class="level-label">CALCULUS</div>
                         </div>
-                    </button>
+
+                        <div class="path-line"></div>
+
+                        <!-- Level 4 - Geometry -->
+                        <div class="level-node level-unlocked" onclick="app.startQuiz('geometry')">
+                            <div class="level-circle bg-gradient-to-b from-pink-300 to-pink-500">
+                                <span class="level-icon">📐</span>
+                            </div>
+                            <div class="level-label">GEOMETRY</div>
+                        </div>
+
+                        <div class="path-line"></div>
+
+                        <!-- Level 5 - Linear Algebra -->
+                        <div class="level-node level-locked">
+                            <div class="level-circle bg-gradient-to-b from-gray-400 to-gray-600">
+                                <span class="level-icon">🔒</span>
+                            </div>
+                            <div class="level-label">LINEAR ALGEBRA</div>
+                        </div>
+
+                        <div class="path-line path-locked"></div>
+
+                        <!-- Level 6 - Gaming Workshop -->
+                        <div class="level-node level-locked">
+                            <div class="level-circle bg-gradient-to-b from-gray-400 to-gray-600">
+                                <span class="level-icon">🔒</span>
+                            </div>
+                            <div class="level-label">GAMING WORKSHOP</div>
+                        </div>
+                    </div>
                 </div>
-                
-                <button onclick="app.showHome()" class="btn-back w-full">
-                    ← Back to Home
-                </button>
+            </div>
+        </div>
+
+        <!-- LEADERBOARD SCREEN -->
+        <div id="leaderboardScreen" class="max-w-md mx-auto hidden">
+            <div class="phone-frame">
+                <div class="phone-content">
+                    <div class="flex justify-between items-center mb-6 px-4">
+                        <button onclick="app.showHome()" class="text-white text-2xl">←</button>
+                        <h2 class="text-white text-xl font-bold">Leaderboard</h2>
+                        <button class="text-white text-2xl">👤</button>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex gap-2 mb-6 px-4">
+                        <button class="filter-tab active">This Week</button>
+                        <button class="filter-tab">All Time</button>
+                    </div>
+
+                    <!-- Top Players -->
+                    <div class="space-y-3 px-4" id="leaderboardList">
+                        <!-- Dynamically filled -->
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -224,34 +261,12 @@
                         🔄 Retry Same Topic
                     </button>
                     <button onclick="app.showTopicSelection()" class="btn-secondary w-full">
-                        📚 Try Different Topic
+                        📚 Choose Different Topic
                     </button>
                     <button onclick="app.showHome()" class="btn-tertiary w-full">
                         🏠 Back to Home
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <!-- LEADERBOARD SCREEN -->
-        <div id="leaderboardScreen" class="max-w-2xl mx-auto hidden">
-            <div class="card p-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-2 text-center">🏆 Top Defenders</h2>
-                <p class="text-gray-600 text-center mb-8">Hall of Fame - Best Math Warriors</p>
-                
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap gap-2 mb-6 justify-center">
-                    <button onclick="app.filterLeaderboard('all')" class="filter-btn active" data-filter="all">All Topics</button>
-                    <button onclick="app.filterLeaderboard('statistics')" class="filter-btn" data-filter="statistics">Statistics</button>
-                    <button onclick="app.filterLeaderboard('algebra')" class="filter-btn" data-filter="algebra">Algebra</button>
-                    <button onclick="app.filterLeaderboard('calculus')" class="filter-btn" data-filter="calculus">Calculus</button>
-                </div>
-                
-                <div id="leaderboardList" class="space-y-3 mb-6"></div>
-                
-                <button onclick="app.showHome()" class="btn-back w-full">
-                    ← Back to Home
-                </button>
             </div>
         </div>
 

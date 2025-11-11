@@ -3,336 +3,359 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PowerMath Defenders - Cosmic Quiz App</title>
+    <title>Powermath Defenders - Quiz App</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.1); }
-        }
-        @keyframes shoot {
-            0% { transform: translateX(0) translateY(0); opacity: 1; }
-            100% { transform: translateX(300px) translateY(300px); opacity: 0; }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        @keyframes pulse-scale {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-        
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 4s infinite;
-        }
-        
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 10s ease-in-out infinite;
-        }
-        
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        .shooting-star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            animation: shoot 3s linear infinite;
-        }
-        
-        .character {
-            animation: bounce 2s ease-in-out infinite;
-        }
-        
-        .logo-glow {
-            filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.8));
-            background-size: 200% 200%;
-            animation: gradient-shift 3s ease infinite;
-        }
-        
-        .spin-slow {
-            animation: spin 3s linear infinite;
-        }
-        
-        .pulse-correct {
-            animation: pulse-scale 0.5s;
-        }
-        
-        .shake-wrong {
-            animation: shake 0.5s;
-        }
-        
-        input[type="text"]:focus {
-            outline: none;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: rgba(168, 85, 247, 0.5);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(168, 85, 247, 0.8);
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="overflow-x-hidden">
-    <!-- Animated Cosmic Background -->
-    <div class="fixed inset-0 bg-gradient-to-b from-indigo-950 via-purple-900 to-violet-950 -z-10 overflow-hidden">
-        <!-- Nebula clouds -->
-        <div class="nebula w-96 h-96 bg-purple-600 top-[10%] left-[10%]"></div>
-        <div class="nebula w-80 h-80 bg-blue-600 bottom-[10%] right-[10%]" style="animation-delay: 2s;"></div>
-        <div class="nebula w-72 h-72 bg-pink-600 top-[50%] left-[50%]" style="animation-delay: 4s;"></div>
+<body>
+    <!-- Animated Stars Background -->
+    <div class="stars" id="starsContainer"></div>
+    
+    <div class="container mx-auto px-4 py-8 relative z-10">
         
-        <!-- Planets -->
-        <div class="planet w-20 h-20 bg-gradient-to-br from-orange-400 to-red-600 top-12 right-20"></div>
-        <div class="planet w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-600 bottom-24 left-16" style="animation-delay: 1.5s;"></div>
-        
-        <!-- Shooting stars -->
-        <div class="shooting-star top-[20%] left-[20%]"></div>
-        <div class="shooting-star top-[30%] right-[30%]" style="animation-delay: 3s;"></div>
-        
-        <!-- Stars container -->
-        <div id="starsContainer" class="absolute inset-0"></div>
-    </div>
-
-    <!-- Home Screen -->
-    <div id="homeScreen" class="min-h-screen flex items-center justify-center p-4 md:p-6">
-        <div class="max-w-md w-full">
-            <!-- Logo -->
-            <div class="text-center mb-12 relative">
-                <div class="absolute inset-0 blur-2xl opacity-50">
-                    <h1 class="text-5xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-transparent">
-                        POWERMATH
-                    </h1>
-                </div>
-                <h1 class="relative text-5xl md:text-6xl font-black mb-2 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent logo-glow">
-                    POWERMATH
+        <!-- HOME SCREEN -->
+        <div id="homeScreen" class="max-w-md mx-auto">
+            <div class="card p-8 text-center">
+                <h1 class="title-text text-5xl md:text-6xl text-yellow-400 mb-4">
+                    POWERMATH<br>DEFENDERS
                 </h1>
-                <h2 class="text-3xl md:text-4xl font-black bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-                    DEFENDERS
-                </h2>
-                <div class="absolute -top-6 right-[20%] text-3xl spin-slow">✨</div>
-            </div>
-
-            <!-- Characters -->
-            <div class="flex justify-center gap-3 md:gap-4 mb-16 flex-wrap">
-                <div class="character w-16 h-20 md:w-20 md:h-24 bg-gradient-to-b from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform" style="animation-delay: 0s;">
-                    <span class="text-3xl md:text-4xl">🦸</span>
-                </div>
-                <div class="character w-16 h-20 md:w-20 md:h-24 bg-gradient-to-b from-green-400 to-green-600 rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform" style="animation-delay: 0.2s;">
-                    <span class="text-3xl md:text-4xl">🧙</span>
-                </div>
-                <div class="character w-16 h-20 md:w-20 md:h-24 bg-gradient-to-b from-red-400 to-red-600 rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform" style="animation-delay: 0.4s;">
-                    <span class="text-3xl md:text-4xl">🤖</span>
-                </div>
-                <div class="character w-16 h-20 md:w-20 md:h-24 bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-2xl flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform" style="animation-delay: 0.6s;">
-                    <span class="text-3xl md:text-4xl">👾</span>
-                </div>
-            </div>
-
-            <!-- Buttons -->
-            <div class="space-y-4">
-                <button onclick="showScreen('registerScreen')" class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all text-lg">
-                    Login
-                </button>
-                <button onclick="showScreen('registerScreen')" class="w-full bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all text-lg">
-                    Registration
-                </button>
-                <button onclick="showScreen('registerScreen')" class="w-full bg-gradient-to-r from-purple-400 to-pink-500 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all text-lg">
-                    Parent Login
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Registration Screen -->
-    <div id="registerScreen" class="hidden min-h-screen flex items-center justify-center p-4 md:p-6">
-        <div class="max-w-md w-full relative">
-            <button onclick="showScreen('homeScreen')" class="absolute -top-4 left-0 bg-white/10 backdrop-blur-lg border border-white/20 text-white text-2xl w-12 h-12 rounded-xl hover:bg-white/20 transition-all hover:scale-110">
-                ←
-            </button>
-            
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-10 shadow-2xl mt-12">
-                <h2 class="text-white text-2xl md:text-3xl font-bold text-center mb-8">Enter Your Name</h2>
                 
-                <div class="flex justify-center mb-8">
-                    <div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-2xl">
-                        <span class="text-5xl md:text-6xl">👤</span>
-                    </div>
+                <!-- Character Heroes -->
+                <div class="my-8 flex justify-center gap-4 flex-wrap">
+                    <div class="character hero-blue">M</div>
+                    <div class="character hero-green">A</div>
+                    <div class="character hero-red">T</div>
+                    <div class="character hero-yellow">H</div>
                 </div>
                 
-                <input type="text" id="userName" placeholder="Hero Name" maxlength="20" 
-                    class="w-full bg-white/10 backdrop-blur-lg border-2 border-white/30 text-white placeholder-white/60 rounded-full py-4 px-6 mb-6 text-lg focus:border-yellow-400 focus:bg-white/20 transition-all">
-                
-                <button onclick="startGame()" class="w-full bg-gradient-to-r from-green-400 to-emerald-500 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all text-lg">
-                    Start Adventure 🚀
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Levels Screen -->
-    <div id="levelsScreen" class="hidden min-h-screen p-4 md:p-6">
-        <div class="max-w-md mx-auto">
-            <!-- Header -->
-            <div class="flex justify-between items-center mb-8">
-                <button onclick="showScreen('homeScreen')" class="bg-white/10 backdrop-blur-lg border border-white/20 text-white text-xl w-12 h-12 rounded-xl hover:bg-white/20 transition-all hover:scale-110 flex items-center justify-center">
-                    ←
-                </button>
-                <h2 class="text-white text-xl md:text-2xl font-bold">Math Mission</h2>
-                <button onclick="showScreen('leaderboardScreen')" class="bg-white/10 backdrop-blur-lg border border-white/20 text-2xl w-12 h-12 rounded-xl hover:bg-white/20 transition-all hover:scale-110 flex items-center justify-center">
-                    🏆
-                </button>
-            </div>
-
-            <!-- Levels Path -->
-            <div class="relative py-10">
-                <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-white/20 -translate-x-1/2"></div>
-                
-                <div id="levelsContainer" class="space-y-16">
-                    <!-- Levels will be inserted here by JavaScript -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quiz Screen -->
-    <div id="quizScreen" class="hidden min-h-screen p-4 md:p-6">
-        <div class="max-w-md mx-auto">
-            <!-- Header -->
-            <div class="flex justify-between items-center mb-6">
-                <button onclick="showScreen('levelsScreen')" class="bg-white/10 backdrop-blur-lg border border-white/20 text-white text-xl w-12 h-12 rounded-xl hover:bg-white/20 transition-all hover:scale-110 flex items-center justify-center">
-                    ←
-                </button>
-                <div class="bg-white/10 backdrop-blur-lg border border-white/20 text-white font-bold text-lg px-5 py-2 rounded-full">
-                    Score: <span id="scoreValue">0</span>
-                </div>
-                <div class="text-white font-bold text-lg">
-                    <span id="currentQuestion">1</span>/12
-                </div>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="w-full h-3 bg-white/20 rounded-full overflow-hidden mb-8">
-                <div id="progressBar" class="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full transition-all duration-500" style="width: 8.33%"></div>
-            </div>
-
-            <!-- Question Type Badge -->
-            <div class="flex justify-center mb-4">
-                <span id="questionTypeBadge" class="bg-purple-500/30 backdrop-blur-lg border border-purple-400/50 text-purple-200 px-4 py-1 rounded-full text-sm font-semibold">
-                    Multiple Choice
-                </span>
-            </div>
-
-            <!-- Quiz Card -->
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-8 mb-6 shadow-2xl">
-                <h3 id="quizLevelName" class="text-white text-lg md:text-xl font-bold mb-4">TECH JUNGLE</h3>
-                <p id="questionText" class="text-yellow-300 text-2xl md:text-3xl font-bold mb-8">What is 15 + 27?</p>
-
-                <!-- Multiple Choice / True False Container -->
-                <div id="optionsContainer" class="space-y-4">
-                    <!-- Options will be inserted here -->
-                </div>
-
-                <!-- Fill in the Blank Container -->
-                <div id="fillBlankContainer" class="hidden space-y-4">
-                    <input type="text" id="fillBlankInput" placeholder="Enter your answer" 
-                        class="w-full bg-white/20 backdrop-blur-lg border-2 border-white/30 text-white text-xl placeholder-white/60 rounded-2xl py-4 px-6 focus:border-yellow-400 focus:bg-white/30 transition-all text-center font-bold">
-                    <button onclick="submitFillBlank()" class="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-4 px-6 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
-                        Submit Answer
+                <div class="space-y-4">
+                    <button onclick="app.showTopicSelection()" class="btn-primary w-full">
+                        🎮 Start Quiz
+                    </button>
+                    <button onclick="app.showLeaderboard()" class="btn-secondary w-full">
+                        🏆 Leaderboard
+                    </button>
+                    <button onclick="app.showStats()" class="btn-tertiary w-full">
+                        📊 My Stats
+                    </button>
+                    <button onclick="app.showSettings()" class="btn-quaternary w-full">
+                        ⚙️ Settings
                     </button>
                 </div>
             </div>
-
-            <!-- Try Again Button -->
-            <button id="tryAgainBtn" onclick="resetQuiz()" class="hidden w-full bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all">
-                Try Again
-            </button>
         </div>
+
+        <!-- TOPIC SELECTION SCREEN -->
+        <div id="topicSelection" class="max-w-3xl mx-auto hidden">
+            <div class="card p-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-2 text-center">Choose Your Challenge</h2>
+                <p class="text-gray-600 text-center mb-8">Select a topic to begin your math adventure!</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <!-- Statistics Topic -->
+                    <button onclick="app.startQuiz('statistics')" class="topic-card bg-gradient-to-br from-blue-100 to-blue-200 hover:from-blue-200 hover:to-blue-300">
+                        <div class="text-5xl mb-3">📊</div>
+                        <h3 class="font-bold text-xl text-blue-800 mb-1">Statistics</h3>
+                        <p class="text-sm text-gray-600">Probability, Data Analysis, Distributions</p>
+                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-blue-700">
+                            <span class="px-2 py-1 bg-blue-200 rounded-full">10 Questions</span>
+                            <span class="px-2 py-1 bg-blue-200 rounded-full">Mixed Types</span>
+                        </div>
+                    </button>
+
+                    <!-- Algebra Topic -->
+                    <button onclick="app.startQuiz('algebra')" class="topic-card bg-gradient-to-br from-green-100 to-green-200 hover:from-green-200 hover:to-green-300">
+                        <div class="text-5xl mb-3">🔢</div>
+                        <h3 class="font-bold text-xl text-green-800 mb-1">Algebra</h3>
+                        <p class="text-sm text-gray-600">Equations, Functions, Polynomials</p>
+                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-green-700">
+                            <span class="px-2 py-1 bg-green-200 rounded-full">10 Questions</span>
+                            <span class="px-2 py-1 bg-green-200 rounded-full">Mixed Types</span>
+                        </div>
+                    </button>
+
+                    <!-- Calculus Topic -->
+                    <button onclick="app.startQuiz('calculus')" class="topic-card bg-gradient-to-br from-red-100 to-red-200 hover:from-red-200 hover:to-red-300">
+                        <div class="text-5xl mb-3">∫</div>
+                        <h3 class="font-bold text-xl text-red-800 mb-1">Calculus</h3>
+                        <p class="text-sm text-gray-600">Derivatives, Integrals, Limits</p>
+                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-red-700">
+                            <span class="px-2 py-1 bg-red-200 rounded-full">10 Questions</span>
+                            <span class="px-2 py-1 bg-red-200 rounded-full">Mixed Types</span>
+                        </div>
+                    </button>
+
+                    <!-- Geometry Topic -->
+                    <button onclick="app.startQuiz('geometry')" class="topic-card bg-gradient-to-br from-yellow-100 to-yellow-200 hover:from-yellow-200 hover:to-yellow-300">
+                        <div class="text-5xl mb-3">📐</div>
+                        <h3 class="font-bold text-xl text-yellow-800 mb-1">Geometry</h3>
+                        <p class="text-sm text-gray-600">Shapes, Angles, Trigonometry</p>
+                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-yellow-700">
+                            <span class="px-2 py-1 bg-yellow-200 rounded-full">10 Questions</span>
+                            <span class="px-2 py-1 bg-yellow-200 rounded-full">Mixed Types</span>
+                        </div>
+                    </button>
+
+                    <!-- Linear Algebra Topic -->
+                    <button onclick="app.startQuiz('linearAlgebra')" class="topic-card bg-gradient-to-br from-purple-100 to-purple-200 hover:from-purple-200 hover:to-purple-300">
+                        <div class="text-5xl mb-3">📈</div>
+                        <h3 class="font-bold text-xl text-purple-800 mb-1">Linear Algebra</h3>
+                        <p class="text-sm text-gray-600">Matrices, Vectors, Transformations</p>
+                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-purple-700">
+                            <span class="px-2 py-1 bg-purple-200 rounded-full">10 Questions</span>
+                            <span class="px-2 py-1 bg-purple-200 rounded-full">Mixed Types</span>
+                        </div>
+                    </button>
+
+                    <!-- Discrete Math Topic -->
+                    <button onclick="app.startQuiz('discreteMath')" class="topic-card bg-gradient-to-br from-pink-100 to-pink-200 hover:from-pink-200 hover:to-pink-300">
+                        <div class="text-5xl mb-3">🎲</div>
+                        <h3 class="font-bold text-xl text-pink-800 mb-1">Discrete Math</h3>
+                        <p class="text-sm text-gray-600">Logic, Sets, Combinatorics</p>
+                        <div class="mt-3 flex items-center justify-center gap-2 text-xs text-pink-700">
+                            <span class="px-2 py-1 bg-pink-200 rounded-full">10 Questions</span>
+                            <span class="px-2 py-1 bg-pink-200 rounded-full">Mixed Types</span>
+                        </div>
+                    </button>
+                </div>
+                
+                <button onclick="app.showHome()" class="btn-back w-full">
+                    ← Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- QUIZ SCREEN -->
+        <div id="quizScreen" class="max-w-3xl mx-auto hidden">
+            <div class="card p-6 md:p-8">
+                <!-- Quiz Header -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+                    <div class="flex items-center gap-4 w-full md:w-auto">
+                        <div class="text-sm font-bold text-purple-800 bg-purple-100 px-4 py-2 rounded-full">
+                            Question <span id="currentQuestion">1</span>/<span id="totalQuestions">10</span>
+                        </div>
+                        <div class="text-sm font-bold text-green-800 bg-green-100 px-4 py-2 rounded-full">
+                            Score: <span id="score">0</span> 🏆
+                        </div>
+                    </div>
+                    <div id="timerDisplay" class="text-sm font-bold text-orange-800 bg-orange-100 px-4 py-2 rounded-full">
+                        ⏱️ Time: <span id="timer">30</span>s
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 rounded-full h-4 mb-8 overflow-hidden shadow-inner">
+                    <div id="progressBar" class="progress-bar h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                
+                <!-- Question Container -->
+                <div id="questionContainer" class="mb-8">
+                    <div class="flex items-start gap-3 mb-6">
+                        <span id="questionType" class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-bold">Multiple Choice</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6 leading-relaxed" id="questionText"></h3>
+                    <div id="answerArea"></div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                    <button id="submitBtn" onclick="app.submitAnswer()" class="btn-primary flex-1">
+                        ✓ Submit Answer
+                    </button>
+                    <button id="nextBtn" onclick="app.nextQuestion()" class="btn-secondary flex-1 hidden">
+                        Next Question →
+                    </button>
+                    <button onclick="app.skipQuestion()" class="btn-skip">
+                        Skip ⏭️
+                    </button>
+                </div>
+                
+                <!-- Feedback Section -->
+                <div id="feedback" class="mt-6 p-4 rounded-lg text-center font-bold hidden"></div>
+                
+                <!-- Explanation Section -->
+                <div id="explanation" class="mt-4 p-4 bg-blue-50 rounded-lg hidden">
+                    <p class="text-sm font-bold text-blue-800 mb-2">💡 Explanation:</p>
+                    <p class="text-sm text-gray-700" id="explanationText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="resultsScreen" class="max-w-lg mx-auto hidden">
+            <div class="card p-8 text-center">
+                <div id="resultIcon" class="text-8xl mb-4">🏆</div>
+                <h2 class="text-4xl font-bold text-purple-800 mb-2" id="resultTitle">Quiz Complete!</h2>
+                <p class="text-gray-600 mb-6" id="resultSubtitle">Great job, Math Defender!</p>
+                
+                <!-- Score Display -->
+                <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-2xl p-6 mb-6 shadow-lg">
+                    <div class="text-6xl font-bold text-yellow-600 mb-2">
+                        <span id="finalScore">0</span>%
+                    </div>
+                    <p class="text-gray-700 text-lg">
+                        <span id="correctAnswers" class="font-bold text-green-600">0</span> correct out of 
+                        <span id="totalAnswers" class="font-bold">10</span>
+                    </p>
+                </div>
+
+                <!-- Performance Badge -->
+                <div id="performanceBadge" class="mb-6 p-4 rounded-xl"></div>
+
+                <!-- Stats Breakdown -->
+                <div class="grid grid-cols-3 gap-3 mb-6">
+                    <div class="bg-green-100 rounded-lg p-3">
+                        <div class="text-2xl font-bold text-green-700" id="correctCount">0</div>
+                        <div class="text-xs text-gray-600">Correct</div>
+                    </div>
+                    <div class="bg-red-100 rounded-lg p-3">
+                        <div class="text-2xl font-bold text-red-700" id="incorrectCount">0</div>
+                        <div class="text-xs text-gray-600">Incorrect</div>
+                    </div>
+                    <div class="bg-gray-100 rounded-lg p-3">
+                        <div class="text-2xl font-bold text-gray-700" id="skippedCount">0</div>
+                        <div class="text-xs text-gray-600">Skipped</div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="space-y-3">
+                    <button onclick="app.retryQuiz()" class="btn-primary w-full">
+                        🔄 Retry Same Topic
+                    </button>
+                    <button onclick="app.showTopicSelection()" class="btn-secondary w-full">
+                        📚 Try Different Topic
+                    </button>
+                    <button onclick="app.showHome()" class="btn-tertiary w-full">
+                        🏠 Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEADERBOARD SCREEN -->
+        <div id="leaderboardScreen" class="max-w-2xl mx-auto hidden">
+            <div class="card p-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-2 text-center">🏆 Top Defenders</h2>
+                <p class="text-gray-600 text-center mb-8">Hall of Fame - Best Math Warriors</p>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 mb-6 justify-center">
+                    <button onclick="app.filterLeaderboard('all')" class="filter-btn active" data-filter="all">All Topics</button>
+                    <button onclick="app.filterLeaderboard('statistics')" class="filter-btn" data-filter="statistics">Statistics</button>
+                    <button onclick="app.filterLeaderboard('algebra')" class="filter-btn" data-filter="algebra">Algebra</button>
+                    <button onclick="app.filterLeaderboard('calculus')" class="filter-btn" data-filter="calculus">Calculus</button>
+                </div>
+                
+                <div id="leaderboardList" class="space-y-3 mb-6"></div>
+                
+                <button onclick="app.showHome()" class="btn-back w-full">
+                    ← Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- STATS SCREEN -->
+        <div id="statsScreen" class="max-w-2xl mx-auto hidden">
+            <div class="card p-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-purple-800 mb-2 text-center">📊 Your Statistics</h2>
+                <p class="text-gray-600 text-center mb-8">Track your progress and achievements</p>
+                
+                <!-- Overall Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="stat-card bg-gradient-to-br from-blue-100 to-blue-200">
+                        <div class="text-4xl mb-2">🎮</div>
+                        <p class="text-sm text-gray-600">Total Quizzes</p>
+                        <p class="text-3xl font-bold text-blue-800" id="totalQuizzes">0</p>
+                    </div>
+                    <div class="stat-card bg-gradient-to-br from-green-100 to-green-200">
+                        <div class="text-4xl mb-2">📈</div>
+                        <p class="text-sm text-gray-600">Average Score</p>
+                        <p class="text-3xl font-bold text-green-800" id="avgScore">0%</p>
+                    </div>
+                    <div class="stat-card bg-gradient-to-br from-yellow-100 to-yellow-200">
+                        <div class="text-4xl mb-2">⭐</div>
+                        <p class="text-sm text-gray-600">Best Score</p>
+                        <p class="text-3xl font-bold text-yellow-800" id="bestScore">0%</p>
+                    </div>
+                </div>
+
+                <!-- Topic Performance -->
+                <div class="bg-purple-50 rounded-xl p-6 mb-6">
+                    <h3 class="font-bold text-lg text-purple-800 mb-4">Performance by Topic</h3>
+                    <div id="topicPerformance" class="space-y-3"></div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 mb-6">
+                    <h3 class="font-bold text-lg text-orange-800 mb-4">🎖️ Achievements</h3>
+                    <div id="achievementsList" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+                </div>
+                
+                <button onclick="app.showHome()" class="btn-back w-full">
+                    ← Back to Home
+                </button>
+            </div>
+        </div>
+
+        <!-- SETTINGS SCREEN -->
+        <div id="settingsScreen" class="max-w-lg mx-auto hidden">
+            <div class="card p-8">
+                <h2 class="text-3xl font-bold text-purple-800 mb-6 text-center">⚙️ Settings</h2>
+                
+                <div class="space-y-6 mb-6">
+                    <!-- Timer Setting -->
+                    <div class="setting-item">
+                        <div class="flex justify-between items-center">
+                            <label class="font-bold text-gray-800">Enable Timer</label>
+                            <label class="switch">
+                                <input type="checkbox" id="timerToggle" checked onchange="app.toggleTimer()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">30 seconds per question</p>
+                    </div>
+
+                    <!-- Sound Effects -->
+                    <div class="setting-item">
+                        <div class="flex justify-between items-center">
+                            <label class="font-bold text-gray-800">Sound Effects</label>
+                            <label class="switch">
+                                <input type="checkbox" id="soundToggle" checked onchange="app.toggleSound()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1">Play sounds for correct/incorrect answers</p>
+                    </div>
+
+                    <!-- Difficulty -->
+                    <div class="setting-item">
+                        <label class="font-bold text-gray-800 block mb-2">Difficulty Level</label>
+                        <select id="difficultySelect" class="w-full p-3 rounded-lg border-2 border-gray-300 font-medium" onchange="app.changeDifficulty()">
+                            <option value="easy">Easy - More time, hints available</option>
+                            <option value="medium" selected>Medium - Standard difficulty</option>
+                            <option value="hard">Hard - Less time, no hints</option>
+                        </select>
+                    </div>
+
+                    <!-- Reset Data -->
+                    <div class="setting-item">
+                        <button onclick="app.resetAllData()" class="w-full py-3 px-6 bg-red-100 text-red-700 rounded-lg font-bold hover:bg-red-200 transition-all">
+                            🗑️ Reset All Data
+                        </button>
+                        <p class="text-sm text-gray-600 mt-1">This will delete all your progress and statistics</p>
+                    </div>
+                </div>
+                
+                <button onclick="app.showHome()" class="btn-back w-full">
+                    ← Back to Home
+                </button>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Leaderboard Screen -->
-    <div id="leaderboardScreen" class="hidden min-h-screen p-4 md:p-6">
-        <div class="max-w-md mx-auto">
-            <!-- Header -->
-            <div class="flex justify-between items-center mb-8">
-                <button onclick="showScreen('levelsScreen')" class="bg-white/10 backdrop-blur-lg border border-white/20 text-white text-xl w-12 h-12 rounded-xl hover:bg-white/20 transition-all hover:scale-110 flex items-center justify-center">
-                    ←
-                </button>
-                <h2 class="text-white text-xl md:text-2xl font-bold">Leaderboard</h2>
-                <div class="w-12"></div>
-            </div>
-
-            <!-- Score Card -->
-            <div class="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl p-8 text-center mb-8 shadow-2xl">
-                <div class="text-5xl mb-3">👑</div>
-                <h3 class="text-white text-xl font-bold mb-2">Your Score</h3>
-                <p id="finalScore" class="text-white text-6xl font-black">0</p>
-            </div>
-
-            <!-- Tabs -->
-            <div class="flex gap-4 mb-6">
-                <button class="flex-1 bg-gradient-to-r from-orange-400 to-red-500 text-white font-bold py-3 rounded-full shadow-lg">
-                    This Week
-                </button>
-                <button class="flex-1 bg-white/20 backdrop-blur-lg border border-white/20 text-white font-bold py-3 rounded-full hover:bg-white/30 transition-all">
-                    All Time
-                </button>
-            </div>
-
-            <!-- Leaderboard List -->
-            <div id="leaderboardList" class="space-y-4 mb-8">
-                <!-- Leaderboard items will be inserted here -->
-            </div>
-
-            <!-- Play Again Button -->
-            <button onclick="resetQuiz()" class="w-full bg-gradient-to-r from-green-400 to-emerald-500 text-white font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all text-lg">
-                Play Again 🎮
-            </button>
-        </div>
-    </div>
-
-    <script src="js/script.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

@@ -415,32 +415,29 @@ const app = {
         leaderboardList.innerHTML = '';
         
         const topScores = [
-            { name: 'Math Master 🧙', score: 98, topic: 'Statistics', avatar: '🧙' },
-            { name: 'Algebra Ace 🎯', score: 95, topic: 'Algebra', avatar: '🎯' },
-            { name: 'Calc Champion 🏆', score: 92, topic: 'Calculus', avatar: '🏆' },
-            { name: 'Geo Genius 📐', score: 90, topic: 'Geometry', avatar: '📐' },
-            { name: 'Stats Star ⭐', score: 88, topic: 'Statistics', avatar: '⭐' },
-            { name: 'Linear Legend 📈', score: 85, topic: 'Linear Algebra', avatar: '📈' },
-            { name: 'Discrete Dynamo ⚡', score: 83, topic: 'Discrete Math', avatar: '⚡' },
-            { name: 'Math Wizard 🔮', score: 80, topic: 'Calculus', avatar: '🔮' }
+            { name: 'David Bharat', score: 94, rank: 1 },
+            { name: 'Anand Bharat', score: 92, rank: 2 },
+            { name: 'Darrel Bharat', score: 86, rank: 3 },
+            { name: 'Tom Boys', score: 75, rank: 4 }
         ];
         
-        topScores.forEach((player, index) => {
-            const medal = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '🏅';
+        topScores.forEach((player) => {
             const item = document.createElement('div');
-            item.className = 'leaderboard-item flex items-center justify-between bg-gradient-to-r from-purple-100 to-pink-100 p-4 rounded-xl';
+            item.className = 'player-card';
             item.innerHTML = `
                 <div class="flex items-center gap-4">
-                    <span class="text-3xl">${medal}</span>
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl">${player.avatar}</span>
-                        <div>
-                            <p class="font-bold text-gray-800">${player.name}</p>
-                            <p class="text-sm text-gray-600">${player.topic}</p>
-                        </div>
+                    <div class="player-avatar">
+                        <span>${player.name.charAt(0)}</span>
+                    </div>
+                    <div>
+                        <p class="font-bold text-white text-lg">${player.name}</p>
+                        <p class="text-sm text-gray-300">Rank #${player.rank}</p>
                     </div>
                 </div>
-                <div class="text-2xl font-bold text-purple-700">${player.score}%</div>
+                <div class="text-right">
+                    <p class="text-3xl font-bold text-yellow-400">${player.score}%</p>
+                    <p class="text-xs text-gray-400">Score</p>
+                </div>
             `;
             leaderboardList.appendChild(item);
         });

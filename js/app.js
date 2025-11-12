@@ -66,10 +66,25 @@ const app = {
     showHome() {
         this.hideAll();
         document.getElementById('homeScreen').classList.remove('hidden');
+        // Remove parent dashboard if exists
+        const parentDashboard = document.getElementById('parentDashboard');
+        if (parentDashboard) parentDashboard.remove();
         this.stopTimer();
     },
 
     showTopicSelection() {
+        // Check if user is logged in
+        if (!authSystem.currentUser) {
+            authSystem.showLogin();
+            return;
+        }
+        
+        // Parents cannot take quizzes
+        if (authSystem.currentUser.type === 'parent') {
+            alert('Parents cannot take quizzes. Please login as a student.');
+            return;
+        }
+        
         this.hideAll();
         document.getElementById('topicSelection').classList.remove('hidden');
     },
